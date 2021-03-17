@@ -1,15 +1,26 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Hello World</h1>
+    <button @click="addUser">Add User</button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
-    default: "Hello World",
+
+  methods: {
+    ...mapActions("users", ["addNewUser"]),
+
+    addUser() {
+      const newUser = {
+        name: "Ivan",
+        age: 23,
+      };
+      this.addNewUser(newUser);
+    },
   },
 };
 </script>
